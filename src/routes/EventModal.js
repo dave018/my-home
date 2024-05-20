@@ -20,10 +20,10 @@ function EventModal({
       <div className="modal-content" style={style}>
         <h2>Event Details</h2>
         <p>Title: {selectedEvent.title}</p>
-        <button onClick={onClose}>onClose</button>
         <button onClick={() => onDeleteEvent(selectedEvent.id)}>
           Delete this event
         </button>
+        <button onClick={onClose}>Close</button>
       </div>
       <div className="modal-overlay" onClick={onClose}></div>
     </div>
