@@ -39,14 +39,15 @@ function Scheduler() {
     setModalOpen(false);
   };
 
-  const handleAddEvent = () => {
+  const handleAddEvent = (eventDetails) => {
     console.log(selectedDate);
 
     const newEvent = {
       id: String(Date.now()),
-      title: "New Event",
-      start: selectedDate.dateStr,
-      allDay: true,
+      title: eventDetails.title,
+      start: eventDetails.start,
+      end: eventDetails.end,
+      allDay: eventDetails.allDay,
     };
 
     setEvents([...events, newEvent]);
@@ -57,12 +58,6 @@ function Scheduler() {
 
   const handleDeleteEvent = (eventId) => {
     console.log("Deleting event...");
-    /*
-    console.log(eventId);
-    console.log(typeof eventId);
-    console.log(events);
-    console.log(typeof events[0].id);
-    */
     setEvents(events.filter((event) => event.id !== eventId));
     setSelectedEvent(null);
     setModalOpen(false);
@@ -89,6 +84,7 @@ function Scheduler() {
         events={events}
         onDeleteEvent={handleDeleteEventAll}
         position={modalPosition}
+        selectedDate={selectedDate}
       />
       <EventModal
         isOpen={eventModalOpen}
