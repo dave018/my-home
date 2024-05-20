@@ -11,14 +11,14 @@ import EventModal from "./EventModal";
 
 function Scheduler() {
   const [events, setEvents] = useState([]);
-  const [selectedDate, setSeletedDate] = useState(Object);
+  const [selectedDate, setSelectedDate] = useState({});
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const [modalOpen, setModalOpen] = useState(false);
   const [eventModalOpen, setEventModalOpen] = useState(false);
 
   const handleDateClick = (arg) => {
-    setSeletedDate(arg);
+    setSelectedDate(arg);
     setModalPosition({ x: arg.jsEvent.clientX, y: arg.jsEvent.clientY });
     console.log(`x: ${modalPosition.x}`);
     console.log(`y: ${modalPosition.y}`);
@@ -50,6 +50,7 @@ function Scheduler() {
     };
 
     setEvents([...events, newEvent]);
+    setSelectedEvent({});
     console.log(events);
     setModalOpen(false);
   };
