@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 
+import EventList from "./EventList";
+import EventInputForm from "./EventInputForm";
+
 import "./ScheduleModal.css";
 
 function ScheduleModal({
@@ -48,53 +51,8 @@ function ScheduleModal({
     <div className="modal" style={{ position: "absolute" }}>
       <div className="modal-content" style={style}>
         <h2>Add Event</h2>
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={eventDetails.title}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Start:
-          <input
-            type="date"
-            name="start"
-            value={eventDetails.start}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          End:
-          <input
-            type="date"
-            name="end"
-            value={eventDetails.end}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          All Day:
-          <input
-            type="checkbox"
-            name="allDay"
-            checked={eventDetails.allDay}
-            onChange={handleChange}
-          />
-        </label>
-        <button onClick={handleAddEvent}>Add event</button>
-        {events.map((event) => (
-          <div key={event.id}>
-            <span>
-              {event.title} - {event.start}
-            </span>
-            <button onClick={() => onDeleteEvent(event.id)}>
-              Delete event
-            </button>
-          </div>
-        ))}
+        <EventInputForm selectedDate={selectedDate} onAddEvent={onAddEvent} />
+        <EventList events={events} onDeleteEvent={onDeleteEvent} />
         <button onClick={onClose}>onClose</button>
       </div>
       <div className="modal-overlay" onClick={onClose}></div>
